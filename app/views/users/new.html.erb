@@ -1,14 +1,29 @@
 <h2>New User</h2>
 
 <%= form_for @user do |f| %>
-  <%= f.label "Name: " %><br>
-  <%= f.text_field :name %><br>
+  <div id="label"><%= f.label "Name: " %></div><br>
+  <div id="field"><%= f.text_field :name %></div><br>
 
-  <%= f.label "Age: " %><br>
-  <%= f.number_field :age %><br>
+  <div id="label"><%= f.label "Age: " %></div><br>
+  <div id="field"><%= f.number_field :age %></div><br>
 
-  <%= f.label "Type of Car: " %><br>
-  <%= f.select :type_of_car, ["Exotic", "SUV", "Sports", "Family", "Sedan", "Luxury", "Economical"] %><br>
+  <div id="label"><%= f.label "Type of Car: " %></div><br>
+  <div id="field"><%= f.select :type_of_car, ["Exotic", "SUV", "Sports", "Family", "Sedan", "Luxury", "Economical"] %></div><br>
 
-  <%= f.submit %>
+  <div id="action"><%= f.submit %></div>
+<% end %>
+
+<br>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <strong><%= pluralize(@user.errors.count, "error") %>
+      prohibited this article from being saved:</strong>
+    
+    <% @user.errors.full_messages.each do |msg| %>
+      <div id="error_message">
+        <ul><%= msg %></ul>
+      </div>
+    <% end %>
+  </div>  
 <% end %>
